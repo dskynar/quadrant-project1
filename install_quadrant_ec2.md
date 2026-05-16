@@ -120,8 +120,6 @@ curl http://YOUR_EC2_PUBLIC_IP:6333/info
 
 ```
 
-```
-
 ## Part 5b: AWS Management Console Configuration (Network Firewalls)
 
 If you prefer to configure the network security layer manually without using Infrastructure as Code (Terraform), you can open the necessary ports directly inside the AWS Web Console.
