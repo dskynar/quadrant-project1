@@ -1,16 +1,42 @@
-# Python
+# ==============================================================================
+# Python & Data Science
+# ==============================================================================
 .venv/
+venv/
+env/
 __pycache__/
 *.py[cod]
+*$py.class
+.pytest_cache/
+.coverage
+htmlcov/
 
-# Secrets
-.env
+# Jupyter Notebooks
+.ipynb_checkpoints
+*/.ipynb_checkpoints/*
 
-# Terraform
+# ==============================================================================
+# Database / Vector Storage (Local Data)
+# ==============================================================================
+qdrant_data/
+*.db
+*.sqlite
+qdrant_storage/
+*.json
+
+# ==============================================================================
+# Infrastructure as Code (Terraform)
+# ==============================================================================
 .terraform/
 *.tfstate
 *.tfstate.backup
 .terraform.lock.hcl
+.terraform.rc
+terraform.rc
 
-# Local Data
-qdrant_data/
+# ==============================================================================
+# Environment Secrets (Never Commit!)
+# ==============================================================================
+.env
+.env.local
+.env.*.local
