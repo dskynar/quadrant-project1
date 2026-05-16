@@ -83,7 +83,7 @@ docker run -d --name qdrant \
 
 ---
 
-## Part 5: Infrastructure as Code (Network Firewalls)
+## Part 5a: Infrastructure as Code (Network Firewalls)
 
 Update your local tracking architecture files to securely open your ingress rules to the application port.
 
@@ -122,4 +122,33 @@ curl http://YOUR_EC2_PUBLIC_IP:6333/info
 
 ```
 
+## Part 5b: AWS Management Console Configuration (Network Firewalls)
+
+If you prefer to configure the network security layer manually without using Infrastructure as Code (Terraform), you can open the necessary ports directly inside the AWS Web Console.
+
+### 1. Locate the EC2 Security Group
+1. Open the [AWS Management Console](https://aws.amazon.com/console/) and navigate to the **EC2 Dashboard**.
+2. On the left-hand sidebar, scroll down to the **Network & Security** section and click on **Security Groups**.
+3. Look through the list and select the Security Group attached to your active EC2 instance (it will likely match the name configured in your initial setup, such as `allow_ssh`).
+
+### 2. Modify Inbound Rules
+1. With the Security Group selected, look at the tab menu at the bottom of the screen and click on the **Inbound rules** tab.
+2. Click the orange **Edit inbound rules** button on the right side.
+
+### 3. Add the Qdrant API Rule
+1. Scroll to the bottom of your existing rules and click the **Add rule** button.
+2. Configure the fields for the new rule row exactly as follows:
+   * **Type:** Select `Custom TCP`.
+   * **Protocol:** Leave as `TCP`.
+   * **Port range:** Type `6333`.
+   * **Source:** Select `AnyIPv4` (which populates `0.0.0.0/0`). 
+     *(🔒 Security Note: For tighter security, change this dropdown to **My IP** instead. This locks down the database so only your current laptop's network connection can reach it).*
+   * **Description:** Type `Allow inbound Qdrant API operations from local laptop`.
+
+### 4. Save and Apply
+1. Click the orange **Save rules** button at the bottom right of the page.
+
+The firewall rules update instantly across the AWS global network. You do not need to reboot your EC2 instance for this change to take effect!
+
+```
 ```
