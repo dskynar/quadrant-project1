@@ -70,10 +70,13 @@ source quadrant-project1/bin/activate
 Pull down and run the Qdrant database engine container. This command includes a detached engine flag to keep the process running safely in the background layer.
 
 ```bash
-# 1. Map out local persistent disk volume paths on the filesystem
+# 1. Pull down and run the Qdrant database engine container.
+docker pull qdrant/qdrant
+
+# 2. Map out local persistent disk volume paths on the filesystem
 mkdir qdrant_storage
 
-# 2. Initialize detached container execution with targeted network ports
+# 3. Initialize detached container execution with targeted network ports
 docker run -d --name qdrant \
     -p 6333:6333 -p 6334:6334 \
     -v "$(pwd)/qdrant_storage:/qdrant/storage:z" \
