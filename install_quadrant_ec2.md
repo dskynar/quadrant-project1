@@ -119,7 +119,7 @@ terraform apply
 Verify structural integration by querying the cluster runtime state from a terminal session on your **local machine**:
 
 ```bash
-curl http://YOUR_EC2_PUBLIC_IP:6333/info
+curl -v http://YOUR_EC2_PUBLIC_IP:6333/info
 
 ```
 
